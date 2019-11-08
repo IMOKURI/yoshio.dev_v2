@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
+    </head>
+    <body>
+        <main>
+            <article>
+                <header>
+                    <h1>{{ self.title() }}</h1>
+                </header>
+
+                {% block content %}{% endblock %}
+
+                <footer>
+                    <p>Follow me on <a href='https://github.com/IMOKURI'>GitHub</a></p>
+                    <p>(c) 2019 Yoshio</p>
+                </footer>
+            </article>
+        </main>
+    </body>
+</html>
