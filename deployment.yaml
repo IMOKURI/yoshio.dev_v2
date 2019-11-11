@@ -10,38 +10,52 @@ metadata:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: yoshio-dev-deployment
-    namespace: yoshio-dev
+  name: yoshio-dev-deployment
+  namespace: yoshio-dev
 spec:
-    selector:
-        matchLabels:
-            app: yoshio-dev
-    replicas: 2
-    template:
-        metadata:
-            labels:
-                app: yoshio-dev
-        spec:
-            containers:
-                - name: yoshio-dev
-                  image: imokuri123/yoshio
-                  ports:
-                      - containerPort: 5000
+  selector:
+    matchLabels:
+      app: yoshio-dev
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: yoshio-dev
+    spec:
+      containers:
+        - name: yoshio-dev
+          image: imokuri123/yoshio
+          ports:
+            - containerPort: 5000
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: yoshio-dev-service
-    namespace: yoshio-dev
-    labels:
-        app: yoshio-dev
+  name: yoshio-dev-service
+  namespace: yoshio-dev
+  labels:
+    app: yoshio-dev
 spec:
-    selector:
-        app: yoshio-dev
-    type: LoadBalancer
-    externalTrafficPolicy: Local
-    ports:
-        - protocol: TCP
-          port: 80
-          targetPort: 5000
+  selector:
+    app: yoshio-dev
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: yoshio-dev-ingress
+  namespace: yoshio-dev
+spec:
+  rules:
+    - host: yoshio.dev
+      http:
+        paths:
+          - backend:
+              serviceName: yoshio-dev-service
+              servicePort: 5000
