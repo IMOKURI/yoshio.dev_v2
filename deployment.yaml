@@ -42,7 +42,7 @@ spec:
   type: NodePort
   ports:
     - protocol: TCP
-      port: 5000
+      port: 80
       targetPort: 5000
 
 ---
@@ -56,6 +56,7 @@ spec:
     - host: yoshio.dev
       http:
         paths:
-          - backend:
+          - path: /
+            backend:
               serviceName: yoshio-dev-service
-              servicePort: 5000
+              servicePort: 80
