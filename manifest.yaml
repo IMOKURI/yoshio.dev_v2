@@ -4,5 +4,5 @@ manifests:
       architecture: amd64
       os: linux
   - platform:
-      architecture: arm/v7
+      architecture: arm32v7
       os: linux
