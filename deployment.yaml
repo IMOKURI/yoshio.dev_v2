@@ -16,7 +16,7 @@ spec:
   selector:
     matchLabels:
       app: yoshio-dev
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
