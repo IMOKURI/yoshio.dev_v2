@@ -1,8 +1,10 @@
 image: imokuri123/yoshio:latest
 manifests:
-  - platform:
+  - image: imokuri123/yoshio:amd64-latest
+    platform:
       architecture: amd64
       os: linux
-  - platform:
+  - image: imokuri123/yoshio:arm32v7-latest
+    platform:
       architecture: arm32v7
       os: linux
