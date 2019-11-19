@@ -1,0 +1,8 @@
+image: imokuri123/yoshio:latest
+manifests:
+  - platform:
+      architecture: amd64
+      os: linux
+  - platform:
+      architecture: arm/v7
+      os: linux

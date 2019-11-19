@@ -1,0 +1,10 @@
+FROM arm32v7/python:3.6-alpine
+
+COPY ["qemu-arm-static", "/usr/bin"]
+
+RUN pip install flask
+
+COPY . /app
+WORKDIR /app
+
+CMD ["python", "app.py"]
