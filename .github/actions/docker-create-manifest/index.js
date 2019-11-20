@@ -36,18 +36,20 @@ async function createAndPushManifest(architectures, image, metaTag) {
     try {
         const architectures = JSON.parse(core.getInput('multiarch'));
 
-        const gitRepo = process.env.GITHUB_REPOSITORY.split('/');
-        const gitRef = process.env.GITHUB_REF.split('/').pop();
-        const gitTag = gitRef.match(/^v((?:\.?\d+)+(?:-.+)?)$/);
+        // const gitRepo = process.env.GITHUB_REPOSITORY.split('/');
+        // const gitRef = process.env.GITHUB_REF.split('/').pop();
+        // const gitTag = gitRef.match(/^v((?:\.?\d+)+(?:-.+)?)$/);
 
-        const image = `${gitRepo[0]}/${gitRepo[1].replace('docker-', '')}`;
-        const tag = gitTag ? gitTag[1] : gitRef;
+        const image = 'imokuri123/yoshio'
+        const tag = 'latest';
+        // const image = `${gitRepo[0]}/${gitRepo[1].replace('docker-', '')}`;
+        // const tag = gitTag ? gitTag[1] : gitRef;
 
         await createAndPushManifest(architectures, image, tag);
 
-        if (gitTag) {
-            await createAndPushManifest(architectures, image, 'latest');
-        }
+        // if (gitTag) {
+        //     await createAndPushManifest(architectures, image, 'latest');
+        // }
     } catch (error) {
         core.setFailed(error);
     }
