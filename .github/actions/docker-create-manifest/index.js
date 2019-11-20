@@ -24,7 +24,7 @@ async function createAndPushManifest(architectures, image, metaTag) {
                 `${image}:${architecture}-${metaTag}`,
                 `--os=linux`,
                 `--arch=${arch}`,
-                `--variant=${arch.replace(64, '')}${variant}`
+                `--variant=${variant}`
             ]);
         }
     }
